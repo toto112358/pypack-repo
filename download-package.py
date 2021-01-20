@@ -1,11 +1,8 @@
-import requests
-file_name='hello-world'
-package=file_name
+import os
+package='helloworld'
 repo='https://raw.githubusercontent.com/toto112358/pypack-repo/master/packages'
 branch='stable'
-url=repo+'/'+branch+'/'+package
-out_file='testing'
-r=requests.get(url)
+url=repo+'/'+branch+'/'+package+'.zst'
 print(url)
-with open(out_file, "wb") as code:
-        code.write(r.content)
+os.system('mkdir test && cd test')
+os.system(f'curl -Os {url} | zstdcat | sh')
